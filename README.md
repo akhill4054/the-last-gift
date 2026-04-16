@@ -2,68 +2,68 @@
 
 Monorepo with:
 
-- `backend/`: FastAPI API designed to run locally (Uvicorn reload) and deploy on **Firebase Functions** (Python, via Functions Framework).
-- `web/`: frontend (Vite) with hot reload.
+-   `backend/`: FastAPI API packaged for AWS Lambda (via SAM)
+-   `web/`: Vite frontend hosted on Firebase Hosting
 
-## Prereqs
+## Tech Stack
 
-- Python 3.11+ recommended
-- Node 18+ recommended
-- Firebase CLI (`firebase --version`)
+-   Backend → FastAPI + AWS Lambda (SAM)
+-   Frontend → Vite (Firebase Hosting)
+-   Database → Firebase Firestore
 
-## Backend
+## Prerequisites
 
-### Local dev (auto-reload)
+-   Python 3.11+
+-   Node.js 18+
+-   AWS SAM CLI
+-   Firebase CLI
 
-```bash
-cd backend
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env
-uvicorn app.main:app --reload --port 8000
-```
+## Running the project
 
-Open:
+### Backend (Lambda via SAM)
 
-- `http://localhost:8000/healthz`
-- `http://localhost:8000/api/test`
+#### Setup
 
-### Firebase Functions (local)
+cd backend python -m venv venv source venv/bin/activate pip install -r
+requirements.txt
 
-```bash
-cd backend
-pip install -r requirements.txt
-functions-framework --target=api --port=8080
-```
+#### Config
 
-Then hit:
+-   env.json (required for SAM local)
+-   GOOGLE_APPLICATION_CREDENTIALS=/path/to/service-account.json
+-   FIREBASE_PROJECT_ID=your-project-id
 
-- `http://localhost:8080/healthz`
+#### Run
 
-### Firestore / Firebase Admin
+./run_dev.sh
 
-For local + deploy, configure one of:
+#### Build
 
-- `GOOGLE_APPLICATION_CREDENTIALS=/path/to/service-account.json`
-- or runtime-provided credentials on GCP/Firebase
+./package_lambda.sh
 
-And set:
+### Frontend
 
-- `FIREBASE_PROJECT_ID=your-project-id`
+#### Setup
 
-If Firestore isn’t configured, `/api/test` still works but will skip Firestore calls.
+cd web npm install
 
-## Frontend
+#### Config
 
-```bash
-cd web
-npm install
-npm run dev
-```
+-   .env required
 
-## Firebase deploy files
+#### Run
 
-- Root `firebase.json` points Functions source to `backend/`.
-- Root `.firebaserc` stores the project id (set yours).
+./run_dev.sh
 
+## Deployment
+
+### Frontend
+
+cd web npm run build firebase deploy
+
+### Backend
+
+Use package_lambda.sh and deploy via SAM / CI
+
+## Firestore
+Requires service account + project id.
