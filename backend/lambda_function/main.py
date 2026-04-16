@@ -7,6 +7,7 @@ from app.services.firestore_http import (
     get_status_state,
     reset_latest_booked_slot,
 )
+from app.services.telegram_alerts import send_alert
 
 
 def get_cors_origin(event):
@@ -67,7 +68,14 @@ def handler(event, context):
 
         # STATUS
         if method == "GET" and path == "/api/status":
-            state = get_status_state()
+            try:
+                state = get_status_state()
+            except Exception as e:
+                import traceback
+                print("ERROR:", str(e))
+                traceback.print_exc()
+                state = {"status": "", "data": ""}
+
             return response(event, 200, {
                 "ok": True,
                 "status": state["status"],
@@ -98,6 +106,9 @@ def handler(event, context):
             if err:
                 return response(event, 503, {"error": err})
 
+            # Create an alert
+            send_alert(f"Slot Booked! -> f{scheduled_utc} (UTC)")
+
             return response(event, 200, {
                 "ok": True,
                 "id": row["id"],
@@ -111,6 +122,9 @@ def handler(event, context):
             row, err = reset_latest_booked_slot()
             if err:
                 return response(event, 503, {"error": err})
+
+            # Create an alert
+            send_alert("Booked slot has been cancelled.")
 
             return response(event, 200, {
                 "ok": True,

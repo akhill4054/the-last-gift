@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Resources:
+  ApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: .
+      Handler: lambda_function.main.handler
+      Runtime: python3.12
+      Architectures:
+        - arm64
+      Events:
+        Api:
+          Type: HttpApi
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+      Environment:
+        Variables:
+          ENV: ""
+          LOG_LEVEL: ""
+          FIREBASE_PROJECT_ID: ""
+          FIREBASE_CREDENTIALS: ""
+          CORS_ORIGINS: ""
+          TG_BOT_TOKEN: ""
+          TG_CHAT_IDS: ""

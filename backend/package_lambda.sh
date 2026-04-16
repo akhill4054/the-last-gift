@@ -11,6 +11,8 @@ REQ_FILE="$ROOT_DIR/requirements.txt"
 DIST_DIR="$LAMBDA_DIR/dist"
 OUTPUT_ZIP="$LAMBDA_DIR/function.zip"
 
+echo "👇 Using $REQ_FILE"
+
 # Reset dist
 echo "🧹 Preparing dist..."
 rm -rf "$DIST_DIR"
