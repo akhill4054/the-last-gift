@@ -11,6 +11,7 @@ __pycache__/
 venv/
 env/
 .env
+env.json
 
 # Node / web
 node_modules/
@@ -32,3 +33,5 @@ backend/lambda_function/dist
 
 # Cursor
 .agents
+
+backend/.aws-sam

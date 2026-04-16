@@ -5,6 +5,8 @@
   "scripts": {
     "dev:web": "npm --prefix web run dev",
     "build:web": "npm --prefix web run build"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
   }
 }
-
