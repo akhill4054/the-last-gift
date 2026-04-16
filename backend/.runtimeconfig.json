@@ -1,0 +1,6 @@
+{
+  "ENV": "local",
+  "LOG_LEVEL": "INFO",
+  "FIREBASE_PROJECT_ID": "your-project-id",
+  "GOOGLE_APPLICATION_CREDENTIALS": "google-application-credentials.json"
+}

@@ -1,0 +1,14 @@
+{
+  "INTRO_MESSAGE": "Just a small step — pick a time, then wait.",
+  "DATE_SUBTITLE": "First, choose a date.",
+  "SLOT_SUBTITLE": "When you're ready, confirm your time.",
+
+  "LOCKED_MESSAGE_PREFIX": "The location will be revealed on",
+
+  "RULE_1": "After you confirm, a location will be revealed — and there’s no going back.",
+  "RULE_2": "Both of you (Aashi and Akash) must participate together.",
+  "RULE_3": "You both must travel to the location together.",
+  "RULE_WARN": "You can do this anytime at your convenience — there’s no rush.",
+
+  "INTRO_NEXT": "Next 👀"
+}
