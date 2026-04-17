@@ -45,6 +45,8 @@ export default function App() {
     const audio = audioRef.current;
     if (!audio) return;
 
+    audio.loop = true;
+
     audio.play()
       .then(() => {
         hasPlayed.current = true;
@@ -56,13 +58,29 @@ export default function App() {
             clearInterval(fade);
             return;
           }
-          vol += 0.01;
+          vol += 0.05;
           audio.volume = vol;
           console.log("Volume:", vol);
         }, 100);
       })
       .catch(() => { });
   }
+
+  useEffect(() => {
+    const audio = audioRef.current;
+
+    const handleVisibility = () => {
+      if (document.visibilityState === "visible" && hasPlayed.current) {
+        audio.play().catch(() => { });
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibility);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibility);
+    };
+  }, []);
 
   function onStart() {
     setReadyLocal(true);
