@@ -396,3 +396,10 @@ pre {
     opacity: 0.1;
   }
 }
+
+.restart-btn,
+.restart-btn:visited,
+.restart-btn:active {
+  color: white !important;
+  text-decoration: none;
+}

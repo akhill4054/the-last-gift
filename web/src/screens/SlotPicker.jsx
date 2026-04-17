@@ -119,6 +119,7 @@ export function SlotPicker({ nowUtcIso, onBooked, onRestart }) {
           borderRadius: 10,
           cursor: "pointer",
           opacity: 0.7,
+          color: "#fff",
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.opacity = "1";
@@ -221,6 +222,7 @@ export function SlotPicker({ nowUtcIso, onBooked, onRestart }) {
               borderRadius: 10,
               cursor: "pointer",
               opacity: 0.7,
+              color: "#fff",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.opacity = "1";
