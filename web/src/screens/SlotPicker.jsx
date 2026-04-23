@@ -115,11 +115,11 @@ export function SlotPicker({ nowUtcIso, onBooked, onRestart }) {
           left: 14,
           border: "1px solid transparent",
           background: "transparent",
-          color: "var(--muted)",
           padding: "8px 10px",
           borderRadius: 10,
           cursor: "pointer",
           opacity: 0.7,
+          color: "#fff",
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.opacity = "1";
@@ -218,11 +218,11 @@ export function SlotPicker({ nowUtcIso, onBooked, onRestart }) {
               right: 14,
               border: "1px solid transparent",
               background: "transparent",
-              color: "var(--muted)",
               padding: "8px 10px",
               borderRadius: 10,
               cursor: "pointer",
               opacity: 0.7,
+              color: "#fff",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.opacity = "1";
@@ -307,7 +307,7 @@ export function SlotPicker({ nowUtcIso, onBooked, onRestart }) {
                   await onConfirm(); // existing logic
                 }}
               >
-                Yes
+                {TEXT.READY}
               </button>
             </div>
             <div className="modal-actions">
@@ -315,7 +315,7 @@ export function SlotPicker({ nowUtcIso, onBooked, onRestart }) {
                 className="btn secondary"
                 onClick={() => setShowConfirm(false)}
               >
-                Cancel
+                {TEXT.WAIT}
               </button>
             </div>
           </div>

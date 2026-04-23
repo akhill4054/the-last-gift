@@ -42,7 +42,7 @@ body {
   min-height: 100vh;
 }
 
-.center > *:not([style*="position: absolute"]) {
+.center>*:not([style*="position: absolute"]) {
   width: 100%;
   max-width: 420px;
 }
@@ -56,7 +56,8 @@ body {
 .center {
   height: 100%;
   width: 100%;
-  min-height: 100vh; /* ✅ ADD THIS */
+  min-height: 100vh;
+  /* ✅ ADD THIS */
 
   display: flex;
   flex-direction: column;
@@ -80,13 +81,15 @@ body {
   z-index: -1;
   pointer-events: none;
 
-  animation: bgZoom 20s ease-in-out infinite alternate; /* 🔥 */
+  animation: bgZoom 20s ease-in-out infinite alternate;
+  /* 🔥 */
 }
 
 @keyframes bgZoom {
   from {
     transform: scale(1);
   }
+
   to {
     transform: scale(1.08);
   }
@@ -103,7 +106,8 @@ body {
   pointer-events: none;
 
   opacity: 0;
-  animation: overlayFade 0.8s ease forwards; /* 🔥 */
+  animation: overlayFade 0.8s ease forwards;
+  /* 🔥 */
 }
 
 @keyframes overlayFade {
@@ -263,21 +267,25 @@ pre {
 
 .modal-overlay {
   position: fixed;
-  inset: 0; /* cleaner than top/left/width/height */
-  background: rgba(0, 0, 0, 0.35); /* reduce this */
+  inset: 0;
+  /* cleaner than top/left/width/height */
+  background: rgba(0, 0, 0, 0.35);
+  /* reduce this */
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  padding: 20px; /* prevents edge touching on small screens */
+  padding: 20px;
+  /* prevents edge touching on small screens */
   z-index: 1000;
 
   backdrop-filter: blur(6px);
 }
 
 .modal {
-  background: rgba(20, 20, 20, 0.35); /* lighter + transparent */
+  background: rgba(20, 20, 20, 0.35);
+  /* lighter + transparent */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 
@@ -313,7 +321,8 @@ pre {
 }
 
 .modal-actions .btn {
-  flex: 1; /* equal width buttons */
+  flex: 1;
+  /* equal width buttons */
 }
 
 .btn.secondary {
@@ -340,4 +349,57 @@ pre {
 
 .loading-overlay.show {
   opacity: 1;
+}
+
+/* Flower 🌺 */
+.floating-flower {
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 250px;
+  height: 250px;
+
+  background-image: url('/flower.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  opacity: 0.18; /* 🔥 visible but subtle */
+  pointer-events: none;
+  z-index: 2;
+
+  animation: rotateSlow 25s linear infinite;
+
+  animation: rotateSlow 25s linear infinite, floatX 6s ease-in-out infinite;
+}
+
+/* Rotation */
+@keyframes rotateSlow {
+  from {
+    transform: translateX(-50%) rotate(0deg);
+  }
+
+  to {
+    transform: translateX(-50%) rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.06;
+  }
+
+  50% {
+    opacity: 0.1;
+  }
+}
+
+.restart-btn,
+.restart-btn:visited,
+.restart-btn:active {
+  color: white !important;
+  text-decoration: none;
 }
