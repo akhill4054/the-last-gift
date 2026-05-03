@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { getStatus } from "../api/client.js";
 
-export function useStatus() {
+export function useStatus(forceSpecial = false) {
   const [data, setData] = useState(undefined);
   const [loading, setLoading] = useState(true);
 
@@ -15,9 +15,11 @@ export function useStatus() {
     }
   }, []);
 
-  useEffect(() => {
-    refresh();
-  }, [refresh]);
+ useEffect(() => {
+    if (!forceSpecial) {
+      refresh();
+    }
+  }, [refresh, forceSpecial]);
 
   return { data, loading, refresh };
 }

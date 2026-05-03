@@ -1,0 +1,36 @@
+{
+  "SPECIAL_DATES": {
+    "d0": {
+      "date": "04-05",
+      "type": "anniversary",
+      "name": "Alex & Jamie",
+      "message": "On this day, two lives became one beautiful journey together ❤️",
+      "bgImage": "anniversary.png",
+      "bgMusic": "/anniversary-music.mp3"
+    },
+    "d1": {
+      "date": "23-04",
+      "type": "anniversary",
+      "name": "Chris & Taylor",
+      "message": "Celebrating another year of love, laughter, and togetherness ❤️",
+      "bgImage": "anniversary.png",
+      "bgMusic": "/anniversary-music.mp3"
+    },
+    "d2": {
+      "date": "15-01",
+      "type": "birthday",
+      "name": "Alex",
+      "message": "On this day, the world became a little brighter ✨",
+      "bgImage": "birthday.png",
+      "bgMusic": "/birthday-music-soft.mp3"
+    },
+    "d3": {
+      "date": "09-05",
+      "type": "birthday",
+      "name": "Jamie",
+      "message": "A special day for a truly special person 🎉",
+      "bgImage": "birthday.png",
+      "bgMusic": "/birthday-music-soft.mp3"
+    }
+  }
+}

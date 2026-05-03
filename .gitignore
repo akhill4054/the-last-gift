@@ -21,6 +21,7 @@ dist/
 
 # Constants
 web/src/config/local.text.json
+web/src/config/local.config.json
 
 # Firebase
 .firebase/

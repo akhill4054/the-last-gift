@@ -6,21 +6,25 @@ import { SlotPicker } from "./screens/SlotPicker.jsx";
 import { Locked } from "./screens/Locked.jsx";
 import { Location } from "./screens/Location.jsx";
 import AppLayout from "./components/AppLayout";
-
+import { getTodaySpecial } from "./utils/specialDates.js";
+import { Special } from "./screens/Special";
 
 export default function App() {
+  const specialEntry = getTodaySpecial();
+  const forceSpecial = import.meta.env.VITE_STATUS === "received" || specialEntry != null;
+
   const [readyLocal, setReadyLocal] = useState(() => {
     return window.localStorage.getItem("ready") === "true";
   });
 
-  const { data, loading, refresh } = useStatus();
+  const { data, loading, refresh } = useStatus(forceSpecial);
 
   const status = data?.status ?? null;
   const hasResponse = data !== undefined;
 
   const hasPlayed = useRef(false);
   const [audioReady, setAudioReady] = useState(false);
-  const audioRef = useRef(new Audio("/bg-music.mp3"));
+  const audioRef = useRef(new Audio(specialEntry?.bgMusic ?? "/bg-music.mp3"));
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -52,7 +56,7 @@ export default function App() {
         hasPlayed.current = true;
 
         // Fade-in starts here
-        let vol = 0;
+        let vol = forceSpecial? 1 : 0;
         const fade = setInterval(() => {
           if (vol >= 0.5) {
             clearInterval(fade);
@@ -93,7 +97,9 @@ export default function App() {
 
   let content;
 
-  if (!hasResponse || !audioReady) {
+  if (forceSpecial) {
+    content = <Special entry={specialEntry} />;
+  } else if (!hasResponse || !audioReady) {
     content = (
       <div className="fade show">
         <div className="center">
@@ -128,7 +134,9 @@ export default function App() {
       onPointerDown={startMusicOnce}
       style={{ height: "100%" }}
     >
-      <AppLayout>{content}</AppLayout>
+      <AppLayout bgImage={specialEntry?.bgImage}>
+        {content}
+      </AppLayout>
 
       <div className="floating-flower" />
     </div>
