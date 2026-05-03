@@ -22,6 +22,9 @@ dist/
 # Constants
 web/src/config/local.text.json
 web/src/config/local.config.json
+web/public/*_birthday.png
+web/public/*anniversary.png
+web/public/*anniversary-music.mp3
 
 # Firebase
 .firebase/
