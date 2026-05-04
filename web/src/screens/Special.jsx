@@ -16,9 +16,9 @@ export function Special({ entry }) {
           <h3 style={{ marginBottom: 8, fontWeight: 500, margin: 0 }}>
             Come back on these dates ✨
           </h3>
-          <p style={{ opacity: 0.7, fontSize: 13, margin: 0 }}>
+          {/* <p style={{ opacity: 0.7, fontSize: 13, margin: 0 }}>
             Something special is waiting
-          </p>
+          </p> */}
           {Object.values(config.SPECIAL_DATES).map((d, i) => {
             const past = isPast(d.date);
 
